@@ -4,12 +4,12 @@ from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // 🔥 YOUR FIREBASE CONFIG HERE
 const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_SENDER",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDaYvM-qIm87UNWXooDLejflRAOBK5B9jU",
+  authDomain: "writtenanchor.firebaseapp.com",
+  projectId: "writtenanchor",
+  storageBucket: "writtenanchor.firebasestorage.app",
+  messagingSenderId: "292669837484",
+  appId: "1:292669837484:web:169fdfd77b20b19e150f09"
 };
 
 const app = initializeApp(firebaseConfig);
