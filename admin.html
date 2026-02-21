@@ -12,7 +12,7 @@
   <input type="text" id="title" placeholder="Post Title"><br><br>
   <textarea id="content" placeholder="Write your content here..."></textarea><br><br>
 
-  <button onclick="addPost()">Publish</button>
+  <button id="publishBtn">Publish</button>
 </div>
 
 <script type="module">
@@ -20,6 +20,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore, collection, addDoc, serverTimestamp } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+// 🔥 PASTE YOUR REAL FIREBASE CONFIG HERE
 const firebaseConfig = {
   apiKey: "AIzaSyDaYvM-qIm87UNWXooDLejflRAOBK5B9jU",
   authDomain: "writtenanchor.firebaseapp.com",
@@ -32,18 +33,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-window.addPost = async function() {
+const publishBtn = document.getElementById("publishBtn");
+
+publishBtn.addEventListener("click", async () => {
   const title = document.getElementById("title").value;
   const content = document.getElementById("content").value;
 
-  await addDoc(collection(db, "posts"), {
-    title: title,
-    content: content,
-    createdAt: serverTimestamp()
-  });
+  if (!title || !content) {
+    alert("Please fill both fields.");
+    return;
+  }
 
-  alert("Post published!");
-};
+  try {
+    await addDoc(collection(db, "posts"), {
+      title: title,
+      content: content,
+      createdAt: serverTimestamp()
+    });
+
+    alert("Post published successfully!");
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    alert("Error publishing post.");
+  }
+});
 </script>
 
 </body>
